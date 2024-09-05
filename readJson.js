@@ -36,7 +36,8 @@ const addTask = async(title = '', status = '')=>{
             uuid,
             title:title.trim(),
             status,
-            date:date()
+            createAt:date(),
+            updateAt:''
         }
         try {
                 await  fs.access(filePathDB); 
@@ -71,7 +72,7 @@ const updateTask = async(uuid = '', title = '')=>{
     const tasks = await readFileJson();
     const task = tasks.find(e => e.uuid === uuid);
     task.title = title.trim();
-    task.date = date();
+    task.updateAt = date();
 
     try {
         await fs.writeFile(filePathDB, JSON.stringify(tasks), { encoding: 'utf8'});

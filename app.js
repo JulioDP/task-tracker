@@ -37,12 +37,12 @@ const evaluarCmd =  async (operation)=> {
                     markTask(cmdOne, cmdTwo);
                     break;
             case 'list':
-                 if(cmdTwo.trim() != ''){            
+                 if(cmdTwo.trim() != '' && cmdList.includes(cmdTwo)){        
                     const tasks =  await listTaskOfStatus(cmdTwo);
                     tasks.forEach(task => {
                         console.log(`${task.uuid} - ${task.title} - ${task.status}`);
                     });
-                 }else{
+                 }else {
                     const tasks = await listTaskAll();
                     tasks.forEach(task => {
                         console.log(`${task.uuid} - ${task.title} - ${task.status}`);
